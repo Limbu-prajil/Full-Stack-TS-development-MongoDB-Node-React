@@ -1,5 +1,5 @@
 import {useState, useEffect} from "react"
-import { fetchContest } from "../api-client"
+import { addNewNameToContest, fetchContest } from "../api-client"
 import Header from "./header"
 
 const Contest = ({initialContest, onContestListClick}) => {
@@ -18,10 +18,12 @@ const Contest = ({initialContest, onContestListClick}) => {
         onContestListClick()
     }
 
-    const handleNewNameSubmit = (event) => {
+    const handleNewNameSubmit = async (event) => {
         event.preventDefault()
         const newNameInput = event.target.newName
-        console.log(newNameInput.value)
+        const updatedContest = await addNewNameToContest({ contestId: contest.id, newNameValue: newNameInput.value })
+        console.log(updatedContest);
+        
     }
 
     return (
@@ -46,7 +48,7 @@ const Contest = ({initialContest, onContestListClick}) => {
 
                 <div className="title">Propose a New Name</div>
                 <div className="body">
-                    <form>
+                    <form onSubmit={handleNewNameSubmit}>
                         <input type="text" name="newName" placeholder="New Name Here ..." />
                         <button type="submit">Submit</button>
                     </form>
