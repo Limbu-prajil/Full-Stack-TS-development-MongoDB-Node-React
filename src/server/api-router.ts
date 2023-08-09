@@ -41,18 +41,20 @@ router.post("/contest/:contestId", async (req, res) => {
     
     const doc = await client
     .collection("contests")
-    .findOneAndUpdate({id: req.params.contestId},{
-        $push: {
-            names: {
-                id: newNameValue.toLowerCase().replace(/\s/,'-'),
-                name: newNameValue,
-                timestamp: new Date(),
+    .findOneAndUpdate(
+        {id: req.params.contestId},
+        {
+            $push: {
+                names: {
+                    id: newNameValue.toLowerCase().replace(/\s/g,'-'),
+                    name: newNameValue,
+                    timestamp: new Date(),
+                }
             }
-        }
-    })
+        },
+        { returnDocument: "after" },
+    )
     res.send({ updatedContest: doc.value })
 })
 
-
 export default router
-
