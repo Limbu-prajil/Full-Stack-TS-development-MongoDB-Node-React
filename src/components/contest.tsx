@@ -21,8 +21,7 @@ const Contest = ({initialContest, onContestListClick}) => {
     const handleNewNameSubmit = async (event) => {
         event.preventDefault()
         const newNameInput = event.target.newName
-        const updatedContest = await addNewNameToContest({ contestId: contest.id, newNameValue: newNameInput.value })
-        console.log(updatedContest);
+        const updatedContest = await addNewNameToContest({ contestId: contest?.id, newNameValue: newNameInput.value })
         setContest(updatedContest)
     }
 
