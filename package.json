@@ -1,7 +1,7 @@
 {
-  "name": "learning-full-stack-javascript-development-mongodb-node-and-react-2424660",
+  "name": "learning-full-stack-javascript-development-mongodb-node-and-react",
   "version": "1.0.0",
-  "description": "This is the repository for the LinkedIn Learning course Learning Full-Stack JavaScript Development: MongoDB, Node, and React. The full course is available from [LinkedIn Learning][lil-course-url].",
+  "description": "This is the repository for the LinkedIn Learning course Learning Full-Stack JavaScript Development: MongoDB, Node, and React.",
   "main": "index.js",
   "scripts": {
     "dev:server": "tsnd src/server/server.ts",
