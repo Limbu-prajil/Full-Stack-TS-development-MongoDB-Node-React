@@ -1,6 +1,8 @@
 import {useState, useEffect} from "react"
 import { addNewNameToContest, fetchContest } from "../api-client"
 import Header from "./header"
+import ProposedNames from "./proposed-names"
+import NewName from "./new-name"
 
 const Contest = ({initialContest, onContestListClick}) => {
     const [contest, setContest] = useState(initialContest)
@@ -29,29 +31,11 @@ const Contest = ({initialContest, onContestListClick}) => {
         <>
             <Header message={contest.contestName} />
             <div className="contest">
-                <div className="title">Content description</div>
+                <div className="title">Contest description</div>
                 <div className="description">{contest.description}</div>
 
-                <div className="title">Proposed Names</div>
-                <div className="body">
-                    {contest.names?.length > 0 ? (
-                        <div className="list">
-                            {contest.names.map((proposedName) => (
-                                <div className="item" key={proposedName.id}>{proposedName.name}</div>
-                            ))}
-                        </div>
-                    ) : (
-                        <div>No names proposed yet</div>
-                    )}
-                </div>
-
-                <div className="title">Propose a New Name</div>
-                <div className="body">
-                    <form onSubmit={handleNewNameSubmit}>
-                        <input type="text" name="newName" placeholder="New Name Here ..." />
-                        <button type="submit">Submit</button>
-                    </form>
-                </div>
+                <ProposedNames contest={contest} />
+                <NewName handleNewNameSubmit={handleNewNameSubmit}/>
 
                 <a href="/" className="link" onClick={handleClickContestList}>Contest List</a>
             </div>
